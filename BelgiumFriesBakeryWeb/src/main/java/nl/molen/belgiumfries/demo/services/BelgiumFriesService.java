@@ -32,8 +32,7 @@ public class BelgiumFriesService {
     }
 
     private BelgiumFriesResponse buildResponse(List<String> eventNames) {
-        boolean isHappy = eventNames.stream().anyMatch(happyEvents::contains);
-        if (isHappy) {
+        if (eventNames.stream().anyMatch(happyEvents::contains)) {
             return new BelgiumFriesResponse("OK");
         }
         return new BelgiumFriesResponse("ERROR");

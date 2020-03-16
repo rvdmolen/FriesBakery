@@ -26,10 +26,8 @@ public class BelgiumFriesController {
 
     @GetMapping("/baker")
     public @ResponseBody
-    CompletableFuture<ResponseEntity<BelgiumFriesResponse>> consumeFries(
-        @RequestParam(value = "topping", required = false) FriesTopping topping,
-        @RequestParam(value = "snack", required = false) Snack snack
-    ) {
+    CompletableFuture<ResponseEntity<BelgiumFriesResponse>> consumeFries(@RequestParam(value = "topping", required = false) FriesTopping topping,
+                                                                         @RequestParam(value = "snack", required = false) Snack snack) {
         return belgiumFriesService.getFriesWithBaker(Optional.ofNullable(topping), Optional.ofNullable(snack))
             .thenApply(ResponseEntity::ok)
             .exceptionally(handleError);

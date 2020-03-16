@@ -32,28 +32,17 @@
         <dependency>
             <groupId>com.ing.baker</groupId>
             <artifactId>baker-recipe-dsl_2.12</artifactId>
-            <version>3.0.0</version>
+            <version>${baker.version}</version>
         </dependency>
         <dependency>
             <groupId>com.ing.baker</groupId>
             <artifactId>baker-compiler_2.12</artifactId>
-            <version>3.0.0</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>com.google.protobuf</groupId>
-                    <artifactId>protobuf-java:jar:3.5.1</artifactId>
-                </exclusion>
-            </exclusions>
+            <version>${baker.version}</version>
         </dependency>
         <dependency>
             <groupId>com.ing.baker</groupId>
             <artifactId>baker-runtime_2.12</artifactId>
-            <version>3.0.0</version>
-        </dependency>
-        <dependency>
-            <groupId>com.google.protobuf</groupId>
-            <artifactId>protobuf-java</artifactId>
-            <version>3.11.4</version>
+            <version>${baker.version}</version>
         </dependency>
 
         <!-- lombok -->

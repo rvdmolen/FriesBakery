@@ -4,16 +4,13 @@ import com.ing.baker.runtime.javadsl.Baker;
 import com.ing.baker.runtime.javadsl.EventInstance;
 import com.ing.baker.runtime.javadsl.SensoryEventResult;
 import lombok.extern.java.Log;
-import lombok.extern.log4j.Log4j;
 import nl.molen.belgiumfries.baker.events.SensoryEvents;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
-import javax.naming.StringRefAddr;
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ExecutionException;
 
 @Log
 @Service
@@ -34,8 +31,10 @@ public class BakerWrapper {
         return this.friesRecipeId
             .thenCompose(recipe -> baker.bake(recipe, traceId))
             .thenCompose(ignore -> baker.fireEventAndResolveWhenCompleted(traceId, EventInstance.from(sensoryEvent)))
-            .whenComplete((result, ex) -> printRecipe(traceId));
-
+            .whenComplete((result, ex) -> {
+                if (ex != null) printRecipe(traceId);
+                printRecipe(traceId);
+            });
     }
 
     private void printRecipe(String traceId) {
